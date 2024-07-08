@@ -1,0 +1,31 @@
+<%- include('header'); -%>
+    <div class="main">
+    <div class="box" id="heading">
+		<%if(kindOfDay=='Saturday'||kindOfDay=='Sunday'){%>
+		<h1 class="day"><%= kindOfDay %></h1>
+
+		<%}else{%>
+		<h1 class="day"><%= kindOfDay %></h1>
+		<%}%>
+    </div>
+<div class="box">
+		<% newItem.forEach(function(item){%>
+
+<form action="/delete" method="post">
+			<div class="item">
+				<input type="checkbox" name="checkbox" value="<%=item._id%>" onChange="this.form.submit()">
+				<p><%=item.name%></p>
+				
+			</div>
+			<input type="hidden" name="listName" value="<%=kindOfDay%>">
+			</form>
+			<% })%>
+		
+    
+		<form class="item" action="/" method="post">
+			<input type="text" name="addItem" placeholder="EnterItem"  autocomplete="off"/>
+			<button type="submit" name="list" value=<%=kindOfDay%>>+</button>
+		</form>
+    </div>
+    
+	<%- include('footer'); -%>
